@@ -6,39 +6,36 @@ fun main() {
 //    print(titular)
 //    testaLacos()
 
-    val contaAne = Conta()
-    contaAne.titular = "Ane"
-    contaAne.numero = 1010101
-    contaAne.setSaldo(5000.0)
-//    contaAne.saldo += 300
+    // exemplo de label 
+    val contaAne = Conta(titular="Ane",numero = 5000)
+    contaAne.saldo = 5000.0
+    contaAne.saldo += 300
     println("depositando na conta da Ane")
     contaAne.deposita(500.0)
 
-    val contaAlice = Conta()
-    contaAlice.titular = "Alice"
-    contaAlice.numero = 101010101
-    contaAlice.setSaldo(5000.0)
+    val contaAlice = Conta("Alice", 5000)
+    contaAlice.saldo = 5000.0
     println("depositando na conta da Alice")
     contaAlice.deposita(600.0)
 
     // espaço de memória distintos
     println(contaAne.titular)
     println(contaAne.numero)
-    println(contaAne.getSaldo())
+    println(contaAne.saldo)
 
     println()
 
     println(contaAlice.titular)
     println(contaAlice.numero)
-    println(contaAlice.getSaldo())
+    println(contaAlice.saldo)
 
     println("sacando na conta da Alice")
     contaAlice.saca(500.0)
-    println(contaAlice.getSaldo())
+    println(contaAlice.saldo)
 
     println("sacando na conta da Ane")
     contaAlice.saca(3000.0)
-    println(contaAne.getSaldo())
+    println(contaAne.saldo)
 
     println("Transferência da conta da Alice para conta da Ane")
     if(contaAlice.transfere(2000.0, contaAne)){
@@ -47,15 +44,27 @@ fun main() {
         println("Falhou transferência")
     }
 
-    println(contaAlice.getSaldo())
-    println(contaAne.getSaldo())
+    println(contaAlice.saldo)
+    println(contaAne.saldo)
 
 }
 
-class Conta{
-    var titular = ""
-    var numero = 0
-    private var saldo = 0.0
+class Conta(
+    val titular: String,
+    val numero: Int){
+    var saldo = 0.0
+//
+//    constructor(titular: String , numero: Int){
+//        this.titular = titular
+//        this.numero = numero
+//    }
+        // properties
+//        set(valor){
+//            if(valor > 0){
+//                field = valor
+//            }
+//        }
+
 
     // uma das regras para criar a classe, é escrevê-la em nível
     // de arquivo
@@ -77,15 +86,7 @@ class Conta{
             destino.deposita(valor)
             return true
         }
-            return false
-    }
-    fun getSaldo(): Double{
-        return saldo
-    }
-    fun setSaldo(valor: Double){
-        if(valor > 0){
-            saldo = valor
-        }
+        return false
     }
 }
 
@@ -100,10 +101,9 @@ fun testaCopiasEReferencias(){
 
 
     // Não é uma atribuição, é uma referência de memória
-    val contaJoao = Conta()
-    contaJoao.titular = "João"
+    val contaJoao = Conta("João", 1000)
     var contaMaria = contaJoao
-    contaMaria.titular = "Maria"
+//    contaMaria.titular = "Maria"
 
     println("titular conta joao: ${contaJoao.titular}")
 }
