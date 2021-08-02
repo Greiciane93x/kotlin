@@ -9,29 +9,103 @@ fun main() {
     val contaAne = Conta()
     contaAne.titular = "Ane"
     contaAne.numero = 1010101
-    contaAne.saldo = 5000.0
+    contaAne.setSaldo(5000.0)
+//    contaAne.saldo += 300
+    println("depositando na conta da Ane")
+    contaAne.deposita(500.0)
 
     val contaAlice = Conta()
     contaAlice.titular = "Alice"
     contaAlice.numero = 101010101
-    contaAlice.saldo = 5000.0
+    contaAlice.setSaldo(5000.0)
+    println("depositando na conta da Alice")
+    contaAlice.deposita(600.0)
 
     // espaço de memória distintos
     println(contaAne.titular)
     println(contaAne.numero)
-    println(contaAne.saldo)
+    println(contaAne.getSaldo())
 
     println()
 
     println(contaAlice.titular)
     println(contaAlice.numero)
-    println(contaAlice.saldo)
+    println(contaAlice.getSaldo())
+
+    println("sacando na conta da Alice")
+    contaAlice.saca(500.0)
+    println(contaAlice.getSaldo())
+
+    println("sacando na conta da Ane")
+    contaAlice.saca(3000.0)
+    println(contaAne.getSaldo())
+
+    println("Transferência da conta da Alice para conta da Ane")
+    if(contaAlice.transfere(2000.0, contaAne)){
+        println("Transferência sucedida")
+    }else{
+        println("Falhou transferência")
+    }
+
+    println(contaAlice.getSaldo())
+    println(contaAne.getSaldo())
+
 }
 
 class Conta{
     var titular = ""
     var numero = 0
-    var saldo = 0.0
+    private var saldo = 0.0
+
+    // uma das regras para criar a classe, é escrevê-la em nível
+    // de arquivo
+    // é possível criá-la no escopo de funções, ou até mesmo
+    // em outras classes
+
+    fun deposita(valor:Double){
+        // significa da própria classe
+        this.saldo += valor
+    }
+    fun saca(valor: Double){
+        if(saldo >= valor){
+            this.saldo -= valor
+        }
+    }
+    fun transfere(valor: Double, destino: Conta): Boolean{
+        if(saldo >= valor){
+            saldo -= valor
+            destino.deposita(valor)
+            return true
+        }
+            return false
+    }
+    fun getSaldo(): Double{
+        return saldo
+    }
+    fun setSaldo(valor: Double){
+        if(valor > 0){
+            saldo = valor
+        }
+    }
+}
+
+fun testaCopiasEReferencias(){
+    val numeroX = 10
+    var numeroY = numeroX
+    numeroY++
+
+    println("numeroX $numeroX")
+    println()
+    println("numeroY $numeroY")
+
+
+    // Não é uma atribuição, é uma referência de memória
+    val contaJoao = Conta()
+    contaJoao.titular = "João"
+    var contaMaria = contaJoao
+    contaMaria.titular = "Maria"
+
+    println("titular conta joao: ${contaJoao.titular}")
 }
 
 //fun testaLacos(){
