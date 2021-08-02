@@ -5,7 +5,7 @@ fun main(){
 //    titular = "Teste imutabilidade" [erro de compilação]
 //    print(titular)
 
-    for(i in 1..5){
+    for(i in 5 downTo 1 step 2){
             val titular: String = "Ane $i"
             val numeroConta: Int = 101010 + i
             var saldo: Double = i + 10.0
