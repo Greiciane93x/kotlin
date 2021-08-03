@@ -9,9 +9,9 @@ fun testaCopiasEReferencias(){
 
 
     // Não é uma atribuição, é uma referência de memória
-    val contaJoao = Conta("João", 1000)
-    var contaMaria = contaJoao
+//    val contaJoao = Conta("João", 1000)
+//    var contaMaria = contaJoao
 //    contaMaria.titular = "Maria"
 
-    println("titular conta joao: ${contaJoao.titular}")
+//    println("titular conta joao: ${contaJoao.titular}")
 }
