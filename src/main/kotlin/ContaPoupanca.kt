@@ -1,7 +1,7 @@
 class ContaPoupanca(
     titular: String,
     numero: Int
-) : Conta(
+) : ContaTransferivel(
     titular = titular,
     numero = numero
 ){
