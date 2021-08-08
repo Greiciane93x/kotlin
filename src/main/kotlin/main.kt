@@ -1,4 +1,6 @@
+import br.com.alura.bytebank.modelo.Autenticavel
 import br.com.alura.bytebank.modelo.Endereco
+import br.com.alura.bytebank.modelo.SistemaInterno
 
 fun main() {
 
@@ -10,11 +12,18 @@ fun main() {
         val tamanhoComplemento: Int = it.complemento?.length ?:0
         println(tamanhoComplemento)
     }
+
+
+
+
+
+    val autenticavel  = object : Autenticavel{
+        val senha = 1234
+        override fun autentica(senha: Int)  = this.senha == senha
+    }
+
+    SistemaInterno().entra(autenticavel, 1234, autenticado = {
+        println("realizar pagamento") })
+
 }
-
-fun teste(endereco: Endereco){
-
-}
-
-
 
