@@ -1,6 +1,4 @@
 import br.com.alura.bytebank.modelo.Cliente
-import br.com.alura.bytebank.modelo.ContaCorrente
-import br.com.alura.bytebank.modelo.ContaPoupanca
 import br.com.alura.bytebank.modelo.Endereco
 
 fun testaContasDiferentes() {

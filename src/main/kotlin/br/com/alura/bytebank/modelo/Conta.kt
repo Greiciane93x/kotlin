@@ -21,18 +21,18 @@ abstract class Conta (
             private set
 
         }
-
-        init {
-            println("Criando conta")
-            Contador.total++
-        }
+//
+//        init {
+//            println("Criando conta")
+//            Contador.total++
+//        }
 
         override fun autentica(senha: Int): Boolean {
             // delegação
             return titular.autentica(senha)
         }
 
-        fun deposita(valor:Double){
+        fun deposita(valor: Double){
             // significa da própria classe
             this.saldo += valor
         }
